@@ -1,2 +1,4 @@
 config.py
 model.pkl
+.DS_Store
+.gitignore
