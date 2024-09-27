@@ -2,3 +2,4 @@ config.py
 model.pkl
 .DS_Store
 .gitignore
+temp_Prescriptions.pdf
