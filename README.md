@@ -4,6 +4,7 @@
 
 ## Problem Statement
 
+
 Many food products pose health risks to individuals with certain medical conditions. It can be challenging for patients to identify safe food options, and they often lack personalized guidance. Additionally, there is limited access to reliable information about ingredients, allergens, and alternatives to unhealthy choices.
 
 Key challenges include:
