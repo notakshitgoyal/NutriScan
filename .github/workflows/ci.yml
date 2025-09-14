@@ -1,6 +1,6 @@
 # .github/workflows/ci.yml
 
-name: Nebius Code CI
+name: Nebius CLI CI
 
 on:
   push:

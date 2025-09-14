@@ -8,7 +8,7 @@ on:
 jobs:
   audit-prs:
     timeout-minutes: 15
-    if: ${{ github.repository == 'NebiusLM/nebius-code' }}
+    if: ${{ github.repository == 'Astrodevil/nebius-cli' }}
     permissions:
       contents: read
       id-token: write

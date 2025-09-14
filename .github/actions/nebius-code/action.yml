@@ -1,24 +1,24 @@
-name: 'Nebius Code Action'
-description: 'Uses the Nebius Code to automate software development tasks.'
+name: 'Nebius CLI Action'
+description: 'Uses the Nebius CLI to automate software development tasks.'
 author: 'Nebius'
 
 inputs:
   prompt:
-    description: 'A specific prompt to guide Nebius Code.'
+    description: 'A specific prompt to guide Nebius CLI.'
     required: false
     default: 'You are a helpful assistant.'
   NEBIUS_API_KEY:
-    description: 'Your Nebius Code API key.'
+    description: 'Your Nebius CLI API key.'
     required: true
   NEBIUS_BASE_URL:
-    description: 'Your Nebius Code base URL.'
+    description: 'Your Nebius CLI base URL.'
     required: true
   NEBIUS_MODEL:
-    description: 'Your Nebius Code model.'
+    description: 'Your Nebius CLI model.'
     required: true
   settings_json:
     description: |
-      A JSON string to configure the Nebius Code. This will be written to .nebius/settings.json.
+      A JSON string to configure the Nebius CLI. This will be written to .nebius/settings.json.
     required: false
   version:
     description: |
@@ -28,12 +28,12 @@ inputs:
     default: 'latest'
 outputs:
   summary:
-    description: "The summarized output from the Nebius Code execution."
+    description: "The summarized output from the Nebius CLI execution."
     value: ${{ steps.nebius_run.outputs.nebius_result }}
 runs:
   using: "composite"
   steps:
-    - name: Configure Nebius Code
+    - name: Configure Nebius CLI
       if: inputs.settings_json != ''
       run: |
         mkdir -p .nebius
@@ -42,26 +42,26 @@ runs:
       env:
         SETTINGS_JSON: ${{ inputs.settings_json }}
 
-    - name: Install Nebius Code
+    - name: Install Nebius CLI
       id: install
       run: |
         if [[ "${{ inputs.version }}" == "latest" || "${{ inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9\.-]+)?(\+[a-zA-Z0-9\.-]+)?$ ]]; then
-          echo "Installing Nebius Code from npm: @nebius-code/nebius-code@${{ inputs.version }}"
+          echo "Installing Nebius CLI from npm: @nebius-code/nebius-code@${{ inputs.version }}"
           npm install -g @nebius-code/nebius-code@${{ inputs.version }}
         else
-          echo "Installing Nebius Code from GitHub: github:nebius-code/nebius-code#${{ inputs.version }}"
+          echo "Installing Nebius CLI from GitHub: github:nebius-code/nebius-code#${{ inputs.version }}"
           npm install -g github:nebius-code/nebius-code#${{ inputs.version }}
         fi
         echo "Verifying installation:"
         if command -v nebius >/dev/null 2>&1; then
-          nebius --version || echo "Nebius Code installed successfully (version command not available)"
+          nebius --version || echo "Nebius CLI installed successfully (version command not available)"
         else
-          echo "Error: Nebius Code not found in PATH"
+          echo "Error: Nebius CLI not found in PATH"
           exit 1
         fi
       shell: bash
 
-    - name: Run Nebius Code
+    - name: Run Nebius CLI
       id: nebius_run
       run: |
         set -e

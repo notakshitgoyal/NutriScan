@@ -7,7 +7,7 @@ on:
 jobs:
   triage-issue:
     timeout-minutes: 5
-    if: ${{ github.repository == 'NebiusLM/nebius-code' }}
+    if: ${{ github.repository == 'Astrodevil/nebius-cli' }}
     permissions:
       issues: write
       contents: read
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Nebius Issue Triage
-        uses: ./.github/actions/nebius-code@main
+        uses: ./.github/actions/nebius-code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
