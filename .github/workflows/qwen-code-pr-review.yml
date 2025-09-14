@@ -96,7 +96,7 @@ jobs:
           echo "EOF" >> "$GITHUB_OUTPUT"
 
       - name: Run Nebius PR Review
-        uses: ./.github/actions/nebius-code@main
+        uses: ./.github/actions/nebius-code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.get_pr.outputs.pr_number || steps.get_pr_comment.outputs.pr_number }}
